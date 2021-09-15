@@ -14,6 +14,16 @@
   <script type="module">
     // import the Three.js module:
     import * as THREE from "https://unpkg.com/three@0.126.0/build/three.module.js";
+    // how well the page is performing:
+    import Stats from "https://unpkg.com/three@0.126.0/examples/jsm/libs/stats.module";
+
+
+
+    // add a stats view to the page to monitor performance:
+    const stats = new Stats();
+    document.body.appendChild(stats.dom);
+
+
 
     // create a renderer with better than default quality:
     const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -39,6 +49,15 @@
     camera.position.y = 1.5; //average human eye height
     camera.position.z = 2;
 
+    // do this now and whenever the window is resized()
+    window.addEventListener("resize", function () {
+      // ensure the renderer fills the page, and the camera aspect ratio matches:
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    }, false);
+
+
     // create the root of a scene graph
     const scene = new THREE.Scene();
 
@@ -57,12 +76,21 @@
 
 
     function animate() {
+      // monitor our FPS:
+      stats.begin();
+
+
       // update the scene:
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
 
       // draw the scene:
       renderer.render( scene, camera );
+
+
+
+      // monitor our FPS:
+      stats.end();
     };
     // start!
     renderer.setAnimationLoop(animate); //refer the function as variable
