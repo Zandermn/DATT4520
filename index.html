@@ -43,6 +43,31 @@
     const scene = new THREE.Scene();
 
 
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshStandardMaterial();
+    const cube = new THREE.Mesh( geometry, material );
+    // position the cube, and add it to the scene:
+    cube.position.y = 1.5;
+    scene.add( cube );
+
+    // 0xRRGGBB
+    const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+    scene.add(light);
+
+
+
+    function animate() {
+      // update the scene:
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+
+      // draw the scene:
+      renderer.render( scene, camera );
+    };
+    // start!
+    renderer.setAnimationLoop(animate); //refer the function as variable
+
+
 
   </script>
 </body>
