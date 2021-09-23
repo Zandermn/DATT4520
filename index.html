@@ -102,12 +102,14 @@
       //gltf loader
       const loader = new GLTFLoader();
       loader.load(
-        //'model/lamp.glb'
-        'https://threejsfundamentals.org/threejs/resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf',
+        'model/lamp.glb',
+        //'https://threejsfundamentals.org/threejs/resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf',
+        //'https://zandermn.github.io/Hello-World/WebXRAssest/lamp.glb',
+        //'https://zandermn.github.io/Hello-World/assets/chest.glb',
         function (gltf) {
           //gltf.scene.scale.set(0.1, 0.1, 0.1);
           gltf.scene.scale.set(0.001, 0.001, 0.001);
-          gltf.scene.position.set(0,1,0);
+          gltf.scene.position.set(0, 1, 0);
 
           gltf.scene.traverse(function (node) {
             if (node.isMesh) {
